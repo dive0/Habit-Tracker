@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import "./App.css";
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
     let dayOfWeekNow = date.getDay();
     let sunday = new Date(date.getTime() - dayOfWeekNow * 24 * 60 * 60 * 1000);
     const datesOfWeek = [sunday];
-    const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    // const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     for (let i = 1; i < 7; i++) {
       datesOfWeek.push(sunday.addDays(i));
     }
@@ -29,6 +30,13 @@ function App() {
     });
   };
 
+  const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const [buttonSets, setButtonSets] = useState([]);
+
+  const handleAddHabit = () => {
+    setButtonSets((prev) => [...prev, Array(7).fill("Done")]);
+  };
+
   return (
     <div className="habit">
       {getWeek()}
@@ -36,37 +44,20 @@ function App() {
       <div className="habit__container">
         <div className="habit__container--header">
           <h2>Habit Tracker</h2>
-          <button className="habit__container--header--btn">Add Habit</button>
+          <button className="habit__container--header--btn" onClick={handleAddHabit}>
+            Add Habit
+          </button>
         </div>
         <div className="habit__container--body">
-          <div className="habit__container--body--item">
-            <h3>Monday</h3>
-            <button className="habit__container--body--item--btn">Done</button>
-          </div>
-          <div className="habit__container--body--item">
-            <h3>Tuesday</h3>
-            <button className="habit__container--body--item--btn">Done</button>
-          </div>
-          <div className="habit__container--body--item">
-            <h3>Wednesday</h3>
-            <button className="habit__container--body--item--btn">Done</button>
-          </div>
-          <div className="habit__container--body--item">
-            <h3>Thursday</h3>
-            <button className="habit__container--body--item--btn">Done</button>
-          </div>
-          <div className="habit__container--body--item">
-            <h3>Friday</h3>
-            <button className="habit__container--body--item--btn">Done</button>
-          </div>
-          <div className="habit__container--body--item">
-            <h3>Saturday</h3>
-            <button className="habit__container--body--item--btn">Done</button>
-          </div>
-          <div className="habit__container--body--item">
-            <h3>Sunday</h3>
-            <button className="habit__container--body--item--btn">Done</button>
-          </div>
+          {buttonSets.map((set, idx) => (
+            <div key={idx} className="habit__container--body--set">
+              {set.map((label, i) => (
+                <button key={i} className="habit__container--body--item--btn">
+                  {label}
+                </button>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </div>
