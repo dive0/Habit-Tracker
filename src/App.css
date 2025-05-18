@@ -1,5 +1,28 @@
 .habit__container {
   border: 2px solid black;
   padding: 16px;
-  border-radius: 8px; /* optional for rounded corners */
+  border-radius: 8px; 
+}
+
+.habit__container--body--item--btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid #222;
+  background: #d6b4fc; 
+  color: #fff; 
+  font-size: 16px;
+  margin: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.habit__container--week {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
 }

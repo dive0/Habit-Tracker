@@ -40,15 +40,17 @@ function App() {
   return (
     <div className="habit">
       <h1>Habit Tracker</h1>
+
+      <button
+        className="habit__container--header--btn"
+        onClick={handleAddHabit}
+        style={{ marginBottom: "16px" }}
+      >
+        Add Habit
+      </button>
       <div className="habit__container">
         <div className="habit__container--week">
           {getWeek()}
-        </div>
-        <div className="habit__container--header">
-          <h2>Habit Tracker</h2>
-          <button className="habit__container--header--btn" onClick={handleAddHabit}>
-            Add Habit
-          </button>
         </div>
         <div className="habit__container--body">
           {buttonSets.map((set, idx) => (
