@@ -39,9 +39,11 @@ function App() {
 
   return (
     <div className="habit">
-      {getWeek()}
       <h1>Habit Tracker</h1>
       <div className="habit__container">
+        <div className="habit__container--week">
+          {getWeek()}
+        </div>
         <div className="habit__container--header">
           <h2>Habit Tracker</h2>
           <button className="habit__container--header--btn" onClick={handleAddHabit}>

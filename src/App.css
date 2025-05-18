@@ -1,0 +1,5 @@
+.habit__container {
+  border: 2px solid black;
+  padding: 16px;
+  border-radius: 8px; /* optional for rounded corners */
+}
