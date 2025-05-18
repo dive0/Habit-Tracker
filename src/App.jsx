@@ -19,14 +19,14 @@ function App() {
       datesOfWeek.push(sunday.addDays(i));
     }
 
-    return datesOfWeek.map((eachDate) => {
+    return datesOfWeek.map((eachDate, i) => {
       return (
-        <>
+        <div key={i}>
           <p>{dayNames[eachDate.getDay()]}</p>
           <p>
             {eachDate.getMonth() + 1}/{eachDate.getDate()}
           </p>
-        </>
+        </div>
       );
     });
   };
@@ -47,14 +47,11 @@ function App() {
       <button
         className="habit__container--header--btn"
         onClick={handleAddHabit}
-        style={{ marginBottom: "16px" }}
-      >
+        style={{ marginBottom: "16px" }}>
         Add Habit
       </button>
       <div className="habit__container">
-        <div className="habit__container--week">
-          {getWeek()}
-        </div>
+        <div className="habit__container--week">{getWeek()}</div>
         <div className="habit__container--body">
           {buttonSets.map((set, idx) => (
             <div key={idx} className="habit__container--body--set">
