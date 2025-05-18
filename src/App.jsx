@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import NewHabitForm from "./components/NewHabitForm";
 
 function App() {
   Date.prototype.addDays = function (days) {
@@ -40,6 +41,8 @@ function App() {
   return (
     <div className="habit">
       <h1>Habit Tracker</h1>
+
+      <NewHabitForm />
 
       <button
         className="habit__container--header--btn"
