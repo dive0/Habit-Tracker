@@ -3,20 +3,22 @@ import "./App.css";
 import NewHabitForm from "./components/NewHabitForm";
 
 function App() {
-  Date.prototype.addDays = function (days) {
-    let date = new Date(this.valueOf());
+  const [buttonSets, setButtonSets] = useState([]);
+  const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  const addDays = (sunday, days) => {
+    let date = new Date(sunday.valueOf());
     date.setDate(date.getDate() + days);
     return date;
-  };
+  }
 
   const getWeek = () => {
     let date = new Date();
     let dayOfWeekNow = date.getDay();
     let sunday = new Date(date.getTime() - dayOfWeekNow * 24 * 60 * 60 * 1000);
     const datesOfWeek = [sunday];
-    // const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     for (let i = 1; i < 7; i++) {
-      datesOfWeek.push(sunday.addDays(i));
+      datesOfWeek.push(addDays(sunday, i));
     }
 
     return datesOfWeek.map((eachDate, i) => {
@@ -30,9 +32,6 @@ function App() {
       );
     });
   };
-
-  const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const [buttonSets, setButtonSets] = useState([]);
 
   const handleAddHabit = () => {
     setButtonSets((prev) => [...prev, Array(7).fill("Done")]);
