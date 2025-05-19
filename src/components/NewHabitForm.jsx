@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { firestore } from "../firebase";
-import { addDoc, collection } from "@firebase/firestore";
+import { setDoc, collection, doc } from "@firebase/firestore";
 
 const NewHabitForm = () => {
   const newHabitRef = useRef();
@@ -16,7 +16,8 @@ const NewHabitForm = () => {
     };
 
     try {
-      addDoc(ref, data);
+      const habitDoc = doc(ref, data.habit);
+      await setDoc(habitDoc, data);
     } catch (error) {
       console.log(error);
     }
