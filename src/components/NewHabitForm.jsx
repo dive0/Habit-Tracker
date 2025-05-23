@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { firestore } from "../firebase";
-import { setDoc, collection, doc } from "@firebase/firestore";
+import { setDoc, collection, doc, getDoc } from "@firebase/firestore";
 
 const NewHabitForm = () => {
   const newHabitRef = useRef();

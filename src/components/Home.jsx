@@ -34,7 +34,7 @@ const Home = () => {
   };
 
   const handleAddHabit = () => {
-    setButtonSets((prev) => [...prev, Array(7).fill("Done")]);
+    setButtonSets((prev) => [...prev, [...dayNames]]);
   };
 
   return (
@@ -54,9 +54,9 @@ const Home = () => {
         <div className="habit__container--body">
           {buttonSets.map((set, idx) => (
             <div key={idx} className="habit__container--body--set">
-              {set.map((label, i) => (
+              {set.map((day, i) => (
                 <button key={i} className="habit__container--body--item--btn">
-                  {label}
+                  {day}
                 </button>
               ))}
             </div>
