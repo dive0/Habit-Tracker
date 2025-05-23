@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Home.css";
 import NewHabitForm from "./NewHabitForm";
+import { setHabitInfo } from "./SetDays";
 
 const Home = () => {
   const [buttonSets, setButtonSets] = useState([]);
@@ -37,6 +38,16 @@ const Home = () => {
     setButtonSets((prev) => [...prev, [...dayNames]]);
   };
 
+  const handleButtonClick = (idx, i) => {
+    const habitId = `habit-${idx}`;
+    const data = {
+      habit_id: habitId,
+      day_index: i,
+      timestamp: new Date().toISOString(),
+    };
+    setHabitInfo(habitId, data);
+  };
+
   return (
     <>
       <h1>Habit Tracker</h1>
@@ -45,17 +56,29 @@ const Home = () => {
 
       <button
         className="habit__container--header--btn"
-        onClick={handleAddHabit}
-        style={{ marginBottom: "16px" }}>
+        onClick={handleAddHabit}>
         Add Habit
       </button>
       <div className="habit__container">
         <div className="habit__container--week">{getWeek()}</div>
+        
         <div className="habit__container--body">
+  {/*     // Loop through the buttonSets array to create a set of buttons for each habit
+          // The button's onClick event is used to handle the habit tracking logic
+          //set is an array of arrays, where each inner array represents a habit
+          // and each element in the inner array represents a day of the week
+          //idx is the index of the current habit in the buttonSets array
+          //i is the index of the current day within the habit */}
           {buttonSets.map((set, idx) => (
             <div key={idx} className="habit__container--body--set">
               {set.map((day, i) => (
-                <button key={i} className="habit__container--body--item--btn">
+                <button
+                  key={i}
+                  className="habit__container--body--item--btn"
+                  data-habit={idx}
+                  data-day={i}
+                  onClick={() => handleButtonClick(idx, i)}
+                >
                   {day}
                 </button>
               ))}
