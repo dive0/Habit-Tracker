@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Home.css";
 import NewHabitForm from "./NewHabitForm";
-// import { getHabit } from "./SetDays";
+import { getHabit } from "./SetDays";
 
 const Home = () => {
   const [buttonSets, setButtonSets] = useState([]);
@@ -76,11 +76,11 @@ const Home = () => {
           ))}
         </div>
       </div>
-      
-       
-      <button >
-        <h1>Test Button</h1>
-      </button>
+    
+    <button onClick={getHabit} className="habit__container--header--btn">
+      Get Habit
+    </button>
+    
     </>
   );
 };
