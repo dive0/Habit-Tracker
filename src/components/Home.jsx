@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Home.css";
 import NewHabitForm from "./NewHabitForm";
-import { setHabitInfo } from "./SetDays";
+import { getHabit } from "./SetDays";
 
 const Home = () => {
   const [buttonSets, setButtonSets] = useState([]);
@@ -38,16 +38,6 @@ const Home = () => {
     setButtonSets((prev) => [...prev, [...dayNames]]);
   };
 
-  const handleButtonClick = (idx, i) => {
-    const habitId = `habit-${idx}`;
-    const data = {
-      habit_id: habitId,
-      day_index: i,
-      timestamp: new Date().toISOString(),
-    };
-    setHabitInfo(habitId, data);
-  };
-
   return (
     <>
       <h1>Habit Tracker</h1>
@@ -77,7 +67,7 @@ const Home = () => {
                   className="habit__container--body--item--btn"
                   data-habit={idx}
                   data-day={i}
-                  onClick={() => handleButtonClick(idx, i)}
+                  onClick={() => console.log("clicked")}
                 >
                   {day}
                 </button>
@@ -86,6 +76,11 @@ const Home = () => {
           ))}
         </div>
       </div>
+      
+       
+      <button onClick={getHabit}>
+        <h1>Test Button</h1>
+      </button>
     </>
   );
 };

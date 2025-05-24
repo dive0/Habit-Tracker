@@ -1,19 +1,20 @@
-import { db } from '../firebase'; // Adjust the import path as needed
-import { doc, setDoc } from 'firebase/firestore';
+import React, { useRef } from "react";
+import { firestore } from "../firebase";
+import { setDoc, collection, doc, getDocs } from "@firebase/firestore";
+import { initializeApp } from "firebase/app";
 
-/**
- * Sets habit information to Firestore under the given user and habit ID.
- * @param {string} habitId - The habit's unique ID.
- * @param {Object} hit - The habit data to store.
- * @returns {Promise<void>}
- */
-export async function setHabitInfo(habitId, hit) {
-    try {
-        const habitRef = doc(db, 'habits', habitId);
-        await setDoc(habitRef, hit, { merge: true });
-        console.log('Habit information set successfully');
-    } catch (error) {
-        console.error('Error setting habit information:', error);
-        throw error;
-    }
+
+const db = getFirestore(); 
+
+export function getHabit() {
+    const habitRef = collection(db, "Habit");
+    getDocs(habitRef)
+        .then((snapshot) => {
+            console.log(snapshot.docs);
+
+        })
+        .catch((error) => {
+            console.log("Error getting documents:", error);
+        });
 }
+
