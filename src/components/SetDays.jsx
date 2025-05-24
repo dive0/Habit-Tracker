@@ -20,3 +20,19 @@ export function getHabit() {
         });
 }
 
+// add day ID
+export function SetDays(idx,i) {
+    const addHabit = document.querySelector("addHabit")
+    addHabit.addEventListener("submit", (e) => {
+        e.preventDefault();
+       setDoc(firestore, {
+            habit: addHabit.idx.value,
+            day: addHabit.i.value
+            
+       })
+        console.log("added")
+        addHabit.reset();
+    });
+}
+
+

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Home.css";
 import NewHabitForm from "./NewHabitForm";
 import { getHabit } from "./SetDays";
+import { SetDays } from "./SetDays";
 
 const Home = () => {
   const [buttonSets, setButtonSets] = useState([]);
@@ -67,7 +68,7 @@ const Home = () => {
                   className="habit__container--body--item--btn"
                   data-habit={idx}
                   data-day={i}
-                  onClick={() => console.log("clicked")}
+                  onClick={() => SetDays(idx, i)}
                 >
                   {day}
                 </button>
