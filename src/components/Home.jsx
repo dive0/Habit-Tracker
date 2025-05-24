@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Home.css";
 import NewHabitForm from "./NewHabitForm";
-import { getHabit } from "./SetDays";
+// import { getHabit } from "./SetDays";
 
 const Home = () => {
   const [buttonSets, setButtonSets] = useState([]);
@@ -78,7 +78,7 @@ const Home = () => {
       </div>
       
        
-      <button onClick={getHabit}>
+      <button >
         <h1>Test Button</h1>
       </button>
     </>
