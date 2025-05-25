@@ -2,6 +2,7 @@
 import "./Home.css";
 import NewHabitForm from "../components/NewHabitForm";
 import AllHabits from "../components/AllHabits";
+import WeekRow from '../components/WeekRow'
 // import { getHabit } from "./SetDays";
 // import { SetDays } from "./SetDays";
 // import { displayData } from "./Display_Data";
@@ -9,33 +10,6 @@ import AllHabits from "../components/AllHabits";
 const Home = () => {
   // const [buttonSets, setButtonSets] = useState([]);
   const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-  const addDays = (sunday, days) => {
-    let date = new Date(sunday.valueOf());
-    date.setDate(date.getDate() + days);
-    return date;
-  };
-
-  const getWeek = () => {
-    let date = new Date();
-    let dayOfWeekNow = date.getDay();
-    let sunday = new Date(date.getTime() - dayOfWeekNow * 24 * 60 * 60 * 1000);
-    const datesOfWeek = [sunday];
-    for (let i = 1; i < 7; i++) {
-      datesOfWeek.push(addDays(sunday, i));
-    }
-
-    return datesOfWeek.map((eachDate, i) => {
-      return (
-        <div key={i}>
-          <p>{dayNames[eachDate.getDay()]}</p>
-          <p>
-            {eachDate.getMonth() + 1}/{eachDate.getDate()}
-          </p>
-        </div>
-      );
-    });
-  };
 
   // const handleAddHabit = () => {
   //   setButtonSets((prev) => [...prev, [...dayNames]]);
@@ -53,7 +27,7 @@ const Home = () => {
         Add Habit
       </button> */}
       <div className="habit__container">
-        <div className="habit__container--week">{getWeek()}</div>
+        <div className="habit__container--week">{<WeekRow dayNames={dayNames} />}</div>
         <AllHabits />
 
         {/* <div className="habit__container--body"> */}
@@ -80,13 +54,6 @@ const Home = () => {
           ))}
         </div> */}
       </div>
-
-      {/* <button
-      onClick={() => displayData()}
-      className="habit__container--header--btn"
-    >
-      Get Habit
-    </button> */}
     </>
   );
 };
