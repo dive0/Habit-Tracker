@@ -1,10 +1,9 @@
 import React, { useRef } from "react";
-import { firestore } from "../libs/firebase";
-import { setDoc, collection, doc } from "@firebase/firestore";
+import { habitRef } from "../libs/firestore.collection";
+import { setDoc, doc } from "@firebase/firestore";
 
 const NewHabitForm = () => {
   const newHabitRef = useRef();
-  const ref = collection(firestore, "habits");
 
   const handleAddHabit = async (e) => {
     e.preventDefault();
@@ -18,7 +17,7 @@ const NewHabitForm = () => {
     newHabitRef.current.value = "";
 
     try {
-      const habitDoc = doc(ref);
+      const habitDoc = doc(habitRef);
       await setDoc(habitDoc, data);
     } catch (error) {
       console.log(error);

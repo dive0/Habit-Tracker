@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { firestore } from "../libs/firebase";
-import { collection, getDocs } from "@firebase/firestore";
+import { habitRef } from "../libs/firestore.collection";
+import { getDocs } from "@firebase/firestore";
 
 const AllHabits = () => {
   const [habits, setHabits] = useState([]);
@@ -14,7 +14,6 @@ const AllHabits = () => {
   }, [habits]);
 
   const fetchHabits = async () => {
-    const habitRef = collection(firestore, "habits");
     getDocs(habitRef)
       .then((snapshot) => {
         setHabits(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
