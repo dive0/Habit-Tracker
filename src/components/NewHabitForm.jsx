@@ -14,13 +14,16 @@ const NewHabitForm = () => {
         String(newHabitRef.current.value).charAt(0).toUpperCase() +
         String(newHabitRef.current.value).slice(1),
     };
+    
+    newHabitRef.current.value = "";
 
     try {
-      const habitDoc = doc(ref, data.habit);
+      const habitDoc = doc(ref);
       await setDoc(habitDoc, data);
     } catch (error) {
       console.log(error);
     }
+
   };
 
   return (
