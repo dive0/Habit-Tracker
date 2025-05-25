@@ -3,6 +3,7 @@ import "./Home.css";
 import NewHabitForm from "./NewHabitForm";
 import { getHabit } from "./SetDays";
 import { SetDays } from "./SetDays";
+import { displayData } from "./Display_Data";
 
 const Home = () => {
   const [buttonSets, setButtonSets] = useState([]);
@@ -78,7 +79,10 @@ const Home = () => {
         </div>
       </div>
     
-    <button onClick={getHabit} className="habit__container--header--btn">
+    <button
+      onClick={() => displayData()}
+      className="habit__container--header--btn"
+    >
       Get Habit
     </button>
     

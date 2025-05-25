@@ -4,11 +4,11 @@ import { setDoc, collection, doc, getDocs } from "@firebase/firestore";
 
 
 
-export function getHabit() {
+export async function getHabit() {
     const habitRef = collection(firestore, "Habit");
     getDocs(habitRef)
         .then((snapshot) => {
-            let habitData = [];
+            let habitData = []; // use react state to store habit data
             snapshot.docs.forEach((doc) => {
                 habitData.push({ ...doc.data(), id: doc.id });
             });
@@ -18,21 +18,23 @@ export function getHabit() {
         .catch((error) => {
             console.log("Error getting documents:", error);
         });
+       
 }
+
 
 // add day ID
 export function SetDays(idx,i) {
-    const addHabit = document.querySelector("addHabit")
-    addHabit.addEventListener("submit", (e) => {
-        e.preventDefault();
-       setDoc(firestore, {
-            habit: addHabit.idx.value,
-            day: addHabit.i.value
+    // const addHabit = document.querySelector("addHabit")
+    // addHabit.addEventListener("submit", (e) => {
+    //     e.preventDefault();
+    //    setDoc(firestore, {
+    //         habit: addHabit.idx.value,
+    //         day: addHabit.i.value
             
-       })
-        console.log("added")
-        addHabit.reset();
-    });
+    //    })
+    //     console.log("added")
+    //     addHabit.reset();
+    // });
 }
 
 
