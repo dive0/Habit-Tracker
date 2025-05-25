@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { firestore } from "../firebase";
+import { firestore } from "../libs/firebase";
 import { setDoc, collection, doc } from "@firebase/firestore";
 
 const NewHabitForm = () => {
@@ -14,7 +14,7 @@ const NewHabitForm = () => {
         String(newHabitRef.current.value).charAt(0).toUpperCase() +
         String(newHabitRef.current.value).slice(1),
     };
-    
+
     newHabitRef.current.value = "";
 
     try {
@@ -23,7 +23,6 @@ const NewHabitForm = () => {
     } catch (error) {
       console.log(error);
     }
-
   };
 
   return (

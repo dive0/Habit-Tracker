@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
-import Home from "./components/Home";
-import NotFound from "./components/NotFound"
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (

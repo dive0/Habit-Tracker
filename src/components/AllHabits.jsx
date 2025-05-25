@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { firestore } from "../firebase";
+import { firestore } from "../libs/firebase";
 import { collection, getDocs } from "@firebase/firestore";
 
 const AllHabits = () => {
@@ -10,8 +10,8 @@ const AllHabits = () => {
   }, []);
 
   useEffect(() => {
-    console.log(habits)
-  }, [habits])
+    console.log(habits);
+  }, [habits]);
 
   const fetchHabits = async () => {
     const habitRef = collection(firestore, "habits");
@@ -24,8 +24,10 @@ const AllHabits = () => {
 
   return (
     <div>
-      {habits.map(habit => <li key={habit.id}>{habit.habit}</li>)}
+      {habits.map((habit) => (
+        <li key={habit.id}>{habit.habit}</li>
+      ))}
     </div>
-  )
+  );
 };
 export default AllHabits;

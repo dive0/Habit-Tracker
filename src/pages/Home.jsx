@@ -1,7 +1,7 @@
 // import { useState } from "react";
 import "./Home.css";
-import NewHabitForm from "./NewHabitForm";
-import AllHabits from "./AllHabits";
+import NewHabitForm from "../components/NewHabitForm";
+import AllHabits from "../components/AllHabits";
 // import { getHabit } from "./SetDays";
 // import { SetDays } from "./SetDays";
 // import { displayData } from "./Display_Data";
