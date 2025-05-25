@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { habitRef } from "../libs/firestore.collection";
+import { habitCollectionRef } from "../libs/firestore.collection";
 import { setDoc, doc } from "@firebase/firestore";
 
 const NewHabitForm = () => {
@@ -17,7 +17,7 @@ const NewHabitForm = () => {
     newHabitRef.current.value = "";
 
     try {
-      const habitDoc = doc(habitRef);
+      const habitDoc = doc(habitCollectionRef);
       await setDoc(habitDoc, data);
     } catch (error) {
       console.log(error);

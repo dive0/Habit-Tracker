@@ -1,25 +1,19 @@
 import { useState, useEffect } from "react";
-import { habitRef } from "../libs/firestore.collection";
-import { getDocs } from "@firebase/firestore";
+import { habitCollectionRef } from "../libs/firestore.collection";
+import { onSnapshot } from "@firebase/firestore";
 
 const AllHabits = () => {
   const [habits, setHabits] = useState([]);
 
   useEffect(() => {
-    fetchHabits();
+    const unsubscribe = onSnapshot(habitCollectionRef, (snapshot) => {
+      setHabits(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
-
-  useEffect(() => {
-    console.log(habits);
-  }, [habits]);
-
-  const fetchHabits = async () => {
-    getDocs(habitRef)
-      .then((snapshot) => {
-        setHabits(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      })
-      .catch((err) => console.log("Error getting documents:", err));
-  };
 
   return (
     <div>
