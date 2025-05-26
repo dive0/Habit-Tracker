@@ -3,6 +3,7 @@ import "./Home.css";
 import NewHabitForm from "../components/NewHabitForm";
 import AllHabits from "../components/AllHabits";
 import WeekRow from '../components/WeekRow'
+import Calander from "../components/CalanderAll/Calander";
 // import { getHabit } from "./SetDays";
 // import { SetDays } from "./SetDays";
 // import { displayData } from "./Display_Data";
@@ -29,6 +30,8 @@ const Home = () => {
       <div className="habit__container">
         <div className="habit__container--week">{<WeekRow dayNames={dayNames} />}</div>
         <AllHabits />
+       
+        
 
         {/* <div className="habit__container--body"> */}
         {/*     // Loop through the buttonSets array to create a set of buttons for each habit
@@ -54,6 +57,8 @@ const Home = () => {
           ))}
         </div> */}
       </div>
+      
+       <Calander />
     </>
   );
 };

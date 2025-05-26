@@ -1,0 +1,71 @@
+.Calendar_Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Calendar {
+    border-radius: 10px;
+    background-color:  white;
+    padding: 20px;
+    width: 100%;
+}
+.Calendar_Header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #4CAF50;
+}
+#Current_Month_Year{
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    background: green;
+}
+#Previous_Month_Button {
+    background-color: red;
+    color: blue;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 10px;
+    cursor: pointer;
+    width: 100px;
+}
+.Calendar_Week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.Day{
+    padding: 10px;
+    cursor: pointer;
+    
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.day-cell {
+  min-height: 40px;
+  border: 1px solid #ccc;
+  text-align: center;
+  line-height: 40px;
+  background: #f9f9f9;
+  border-radius: 6px;
+  font-size: 16px;
+  aspect-ratio: 1 / 1; /* Makes cells square if supported */
+  box-sizing: border-box;
+}
+
+
