@@ -1,4 +1,5 @@
 import './Calander.css';
+import JournalEntry from '../JournalEntry';
 
 export default function DynCalander({ currentDate, setCurrentDate, selectedDate, setSelectedDate }) {
     const month = currentDate.getMonth();
@@ -31,6 +32,7 @@ export default function DynCalander({ currentDate, setCurrentDate, selectedDate,
                 onClick={() => setSelectedDate(day)}
             >
                 {day}
+                {isSelectedDay && <JournalEntry />}
             </div>
         );
     }
