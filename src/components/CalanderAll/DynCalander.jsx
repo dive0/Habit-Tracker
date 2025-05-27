@@ -32,7 +32,7 @@ export default function DynCalander({ currentDate, setCurrentDate, selectedDate,
                 onClick={() => setSelectedDate(day)}
             >
                 {day}
-                {isSelectedDay && <JournalEntry />}
+                {isSelectedDay && <JournalEntry selectedDate={selectedDate} currentDate={currentDate} />}
             </div>
         );
     }

@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { journalCollectionRef } from "../libs/firestore.collection";
 import { setDoc, doc } from "@firebase/firestore";
+import "./JournalEntry.css";
 
 const JournalEntry = () => {
   const newjournalRef = useRef();
@@ -25,11 +26,20 @@ const JournalEntry = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleAddHabit}>
-        <label htmlFor="newHabit">New Journal</label>
-        <input type="text" ref={newjournalRef} />
-        <button type="submit">Add Entry</button>
+    <div className="journal-entry-bottom-bar">
+      <form onSubmit={handleAddHabit} className="journal-entry-form">
+        <label htmlFor="newHabit" >
+          New Journal Entry        
+        </label>
+        <input
+          type="text"
+          ref={newjournalRef}
+          className="journal-entry-input"
+        />
+        <button type="submit" className="journal-entry-button">
+          Add Entry
+        </button>
+        
       </form>
     </div>
   );

@@ -2,12 +2,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 .Calendar {
     border-radius: 10px;
     background-color:  white;
-    padding: 20px;
-    width: 100%;
+    padding-bottom: 7%;
+    width: 50%;
+    
+    
 }
 .Calendar_Header{
     display: flex;
@@ -64,8 +67,20 @@
   background: #f9f9f9;
   border-radius: 6px;
   font-size: 16px;
-  aspect-ratio: 1 / 1; /* Makes cells square if supported */
+  aspect-ratio: 1 / 1; 
   box-sizing: border-box;
+}
+.day-cell.selected-day,
+.day-cell.selected-day:hover {
+  background: #90cdf4;
+  border: 2px solid #3182ce;
+  color: #222;
+}
+
+.day-cell:hover {
+  background: #bee3f8;
+  border: 2px solid #63b3ed;
+  cursor: pointer;
 }
 
 

@@ -1,0 +1,29 @@
+.journal-entry-bottom-bar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: white;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+  padding: 16px;
+  
+}
+
+.journal-entry-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.journal-entry-input {
+  width: 350px;
+  height: 40px;
+  font-size: 18px;
+  padding: 8px;
+}
+
+.journal-entry-button {
+  margin-left: 10px;
+  height: 40px;
+  font-size: 16px;
+}
