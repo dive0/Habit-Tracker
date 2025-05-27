@@ -1,6 +1,7 @@
 import './Calander.css';
 import JournalEntry from '../JournalEntry';
 
+
 export default function DynCalander({ currentDate, setCurrentDate, selectedDate, setSelectedDate }) {
     const month = currentDate.getMonth();
     const year = currentDate.getFullYear();
@@ -25,14 +26,19 @@ export default function DynCalander({ currentDate, setCurrentDate, selectedDate,
 
         const isSelectedDay = selectedDate === day;
 
+        
+        const uniqueId = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+
         days.push(
             <div
-                key={day}
+                key={uniqueId}
+                id={uniqueId}
                 className={`day-cell${isCurrentDay ? ' current-day' : ''}${isSelectedDay ? ' selected-day' : ''}`}
                 onClick={() => setSelectedDate(day)}
             >
                 {day}
-                {isSelectedDay && <JournalEntry selectedDate={selectedDate} currentDate={currentDate} />}
+                {isSelectedDay && <JournalEntry selectedDate={selectedDate} currentDate={currentDate} uniqueId={uniqueId} />}
+                
             </div>
         );
     }

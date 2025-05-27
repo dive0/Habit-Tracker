@@ -4,7 +4,7 @@ import NewHabitForm from "../components/NewHabitForm";
 import AllHabits from "../components/AllHabits";
 import WeekRow from '../components/WeekRow'
 import Calander from "../components/CalanderAll/Calander";
-import GetJournalButton from "../components/GetJournal/GetJournalButton";
+
 
 // import { SetDays } from "./SetDays";
 // import { displayData } from "./Display_Data";
@@ -58,7 +58,7 @@ const Home = () => {
           ))}
         </div> */}
       </div>
-      <GetJournalButton/>
+      
        <Calander />
        
 
