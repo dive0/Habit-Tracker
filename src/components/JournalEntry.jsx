@@ -1,18 +1,21 @@
 import React, { useRef, useEffect, useState } from "react";
 import { journalCollectionRef } from "../libs/firestore.collection";
-import { setDoc, doc, query, where, getDocs } from "@firebase/firestore";
+import { setDoc, doc, query, where, getDocs, updateDoc } from "@firebase/firestore";
 import "./JournalEntry.css";
 
 const JournalEntry = ({ uniqueId }) => {
   const newjournalRef = useRef();
   const [entries, setEntries] = useState([]);
+  const [editingIdx, setEditingIdx] = useState(null);
+  const [editingValue, setEditingValue] = useState("");
 
   // Fetch entries with matching uniqueId
   useEffect(() => {
     async function fetchEntries() {
       const q = query(journalCollectionRef, where("uniqueId", "==", uniqueId));
       const snapshot = await getDocs(q);
-      const data = snapshot.docs.map((doc) => doc.data());
+      // Save both data and doc id for editing
+      const data = snapshot.docs.map(docSnap => ({ ...docSnap.data(), docId: docSnap.id }));
       setEntries(data);
     }
     if (uniqueId) fetchEntries();
@@ -36,8 +39,29 @@ const JournalEntry = ({ uniqueId }) => {
       // Refresh entries after adding
       const q = query(journalCollectionRef, where("uniqueId", "==", uniqueId));
       const snapshot = await getDocs(q);
-      const dataArr = snapshot.docs.map((doc) => doc.data());
+      const dataArr = snapshot.docs.map(docSnap => ({ ...docSnap.data(), docId: docSnap.id }));
       setEntries(dataArr);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleEdit = (idx) => {
+    setEditingIdx(idx);
+    setEditingValue(entries[idx].habit);
+  };
+
+  const handleSave = async (docId) => {
+    try {
+      const entryRef = doc(journalCollectionRef, docId);
+      await updateDoc(entryRef, { habit: editingValue });
+      // Refresh entries after update
+      const q = query(journalCollectionRef, where("uniqueId", "==", uniqueId));
+      const snapshot = await getDocs(q);
+      const dataArr = snapshot.docs.map(docSnap => ({ ...docSnap.data(), docId: docSnap.id }));
+      setEntries(dataArr);
+      setEditingIdx(null);
+      setEditingValue("");
     } catch (error) {
       console.log(error);
     }
@@ -62,7 +86,41 @@ const JournalEntry = ({ uniqueId }) => {
         <h4>Entries for this day:</h4>
         <ul>
           {entries.map((entry, idx) => (
-            <li key={idx}>{entry.habit}</li>
+            <li key={entry.docId}>
+              {editingIdx === idx ? (
+                <>
+                  <input
+                    value={editingValue}
+                    onChange={e => setEditingValue(e.target.value)}
+                    className="journal-entry-input"
+                    style={{ width: "200px", marginRight: "10px" }}
+                  />
+                  <button
+                    className="journal-entry-button"
+                    onClick={() => handleSave(entry.docId)}
+                  >
+                    Save
+                  </button>
+                  <button
+                    className="journal-entry-button"
+                    onClick={() => setEditingIdx(null)}
+                  >
+                    Cancel
+                  </button>
+                </>
+              ) : (
+                <>
+                  {entry.habit}
+                  <button
+                    className="journal-entry-button"
+                    style={{ marginLeft: "10px" }}
+                    onClick={() => handleEdit(idx)}
+                  >
+                    Edit
+                  </button>
+                </>
+              )}
+            </li>
           ))}
         </ul>
       </div>
